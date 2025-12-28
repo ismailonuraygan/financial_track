@@ -12,31 +12,30 @@ import SignUp from '../pages/auth/SignUp';
 import Dashboard from '../pages/dashboard/Dashboard';
 
 export const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <Navigate to="/sign-in" replace />,
-  },
-  {
-    element: <AuthLayout />,
-    children: [
-      {
-        path: 'sign-in',
-        element: <SignIn />,
-      },
-      {
-        path: 'sign-up',
-        element: <SignUp />,
-      },
-    ],
-  },
-  {
-    element: <DashboardLayout />,
-    children: [
-      {
-        path: 'dashboard',
-        element: <Dashboard />,
-      },
-    ],
-  },
+	{
+		path: '/',
+		element: <Navigate to="/sign-in" replace />,
+	},
+	{
+		element: <AuthLayout />,
+		children: [
+			{
+				path: 'sign-in',
+				element: <SignIn />,
+			},
+			{
+				path: 'sign-up',
+				element: <SignUp />,
+			},
+		],
+	},
+	{
+		element: <DashboardLayout />,
+		children: [
+			{
+				path: 'dashboard',
+				element: <Dashboard />,
+			},
+		],
+	},
 ]);
-
