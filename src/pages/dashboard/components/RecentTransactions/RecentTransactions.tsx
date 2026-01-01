@@ -96,4 +96,3 @@ function RecentTransactions() {
 }
 
 export default RecentTransactions;
-

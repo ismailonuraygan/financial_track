@@ -3,9 +3,12 @@
 
 .recent-transactions {
 	background-color: $bg-white;
-	border-radius: $radius-xl;
-	border: 1px solid $border-color;
-	padding: $spacing-lg;
+
+	@include desktop {
+		padding: $spacing-lg;
+		border: 1px solid $border-color;
+		border-radius: $radius-xl;
+	}
 
 	&--loading {
 		min-height: 300px;
@@ -15,7 +18,10 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		margin-bottom: $spacing-lg;
+		margin-bottom: $spacing-md;
+		@include desktop {
+			margin-bottom: $spacing-lg;
+		}
 	}
 
 	&__title {

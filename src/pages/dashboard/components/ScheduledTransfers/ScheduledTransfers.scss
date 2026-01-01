@@ -1,10 +1,13 @@
 @use '@/styles/variables' as *;
+@use '@/styles/breakpoints' as *;
 
 .scheduled-transfers {
 	background-color: $bg-white;
-	border-radius: $radius-lg;
-	padding: $spacing-lg;
-	box-shadow: $shadow-sm;
+	@include desktop {
+		border-radius: $radius-lg;
+		padding: $spacing-lg;
+		box-shadow: $shadow-sm;
+	}
 
 	&__title {
 		color: $text-primary;

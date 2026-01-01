@@ -3,9 +3,12 @@
 
 .working-capital {
 	background-color: $bg-white;
-	border-radius: $radius-xl;
-	border: 1px solid $border-color;
-	padding: $spacing-lg;
+
+	@include desktop {
+		border: 1px solid $border-color;
+		border-radius: $radius-xl;
+		padding: $spacing-lg;
+	}
 
 	&--loading {
 		min-height: 400px;
@@ -119,4 +122,3 @@
 		background-position: -200% 0;
 	}
 }
-
