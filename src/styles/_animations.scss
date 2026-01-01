@@ -1,8 +1,14 @@
+@use 'sass:color';
 @use 'variables' as *;
 
 // Shimmer animation for skeleton loading states
 @mixin shimmer {
-	background: linear-gradient(90deg, $bg-gray 25%, lighten($bg-gray, 5%) 50%, $bg-gray 75%);
+	background: linear-gradient(
+		90deg,
+		$bg-gray 25%,
+		color.adjust($bg-gray, $lightness: 5%) 50%,
+		$bg-gray 75%
+	);
 	background-size: 200% 100%;
 	animation: shimmer 1.5s infinite ease-in-out;
 }
@@ -32,4 +38,3 @@
 		opacity: 0.6;
 	}
 }
-
