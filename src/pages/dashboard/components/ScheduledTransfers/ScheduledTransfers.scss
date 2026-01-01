@@ -1,0 +1,103 @@
+@use '@/styles/variables' as *;
+
+.scheduled-transfers {
+	background-color: $bg-white;
+	border-radius: $radius-lg;
+	padding: $spacing-lg;
+	box-shadow: $shadow-sm;
+
+	&__title {
+		color: $text-primary;
+	}
+
+	&__view-all-btn {
+		color: $secondary-color !important;
+		font-weight: $font-weight-medium;
+		gap: $spacing-xs;
+
+		&:hover {
+			background-color: rgba($secondary-color, 0.1) !important;
+		}
+	}
+
+	&__list {
+		display: flex;
+		flex-direction: column;
+		gap: $spacing-md;
+	}
+
+	&__item {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: $spacing-sm 0;
+		border-bottom: 1px solid $border-color;
+
+		&:last-child {
+			border-bottom: none;
+		}
+
+		&--loading {
+			.scheduled-transfers__avatar-skeleton {
+				width: 40px;
+				height: 40px;
+				border-radius: $radius-full;
+				background-color: $bg-gray;
+				animation: pulse 1.5s infinite ease-in-out;
+			}
+
+			.scheduled-transfers__name-skeleton {
+				width: 120px;
+				height: 16px;
+				background-color: $bg-gray;
+				border-radius: $radius-sm;
+				animation: pulse 1.5s infinite ease-in-out;
+			}
+
+			.scheduled-transfers__date-skeleton {
+				width: 150px;
+				height: 14px;
+				background-color: $bg-gray;
+				border-radius: $radius-sm;
+				margin-top: $spacing-xs;
+				animation: pulse 1.5s infinite ease-in-out;
+			}
+
+			.scheduled-transfers__amount-skeleton {
+				width: 80px;
+				height: 20px;
+				background-color: $bg-gray;
+				border-radius: $radius-sm;
+				animation: pulse 1.5s infinite ease-in-out;
+			}
+		}
+	}
+
+	&__avatar {
+		border: 2px solid $border-color;
+	}
+
+	&__name {
+		color: $text-primary;
+	}
+
+	&__date {
+		color: $text-secondary;
+	}
+
+	&__amount {
+		color: $text-primary;
+	}
+
+	@keyframes pulse {
+		0% {
+			opacity: 0.6;
+		}
+		50% {
+			opacity: 1;
+		}
+		100% {
+			opacity: 0.6;
+		}
+	}
+}
