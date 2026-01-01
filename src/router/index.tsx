@@ -1,8 +1,14 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 
 // Layouts
-import AuthLayout from '../layouts/AuthLayout';
-import DashboardLayout from '../layouts/DashboardLayout';
+import AuthLayout from '../layouts/AuthLayout/AuthLayout';
+import DashboardLayout from '../layouts/DashboardLayout/DashboardLayout';
+
+// Guards
+import { GuestRoute, ProtectedRoute } from '../components/guards';
+
+// Error Boundary
+import { RouterErrorBoundary } from '../components/ErrorBoundary';
 
 // Auth Pages
 import SignIn from '../pages/auth/SignIn';
@@ -14,27 +20,44 @@ import Dashboard from '../pages/dashboard/Dashboard';
 export const router = createBrowserRouter([
 	{
 		path: '/',
-		element: <Navigate to="/sign-in" replace />,
+		element: <Navigate to="/dashboard" replace />,
+		errorElement: <RouterErrorBoundary />,
 	},
 	{
-		element: <AuthLayout />,
+		// Guest only routes (sign-in, sign-up)
+		element: <GuestRoute />,
+		errorElement: <RouterErrorBoundary />,
 		children: [
 			{
-				path: 'sign-in',
-				element: <SignIn />,
-			},
-			{
-				path: 'sign-up',
-				element: <SignUp />,
+				element: <AuthLayout />,
+				children: [
+					{
+						path: 'sign-in',
+						element: <SignIn />,
+					},
+					{
+						path: 'sign-up',
+						element: <SignUp />,
+					},
+				],
 			},
 		],
 	},
 	{
-		element: <DashboardLayout />,
+		// Protected routes (dashboard)
+		element: <ProtectedRoute />,
+		errorElement: <RouterErrorBoundary />,
 		children: [
 			{
-				path: 'dashboard',
-				element: <Dashboard />,
+				element: <DashboardLayout />,
+				errorElement: <RouterErrorBoundary />,
+				children: [
+					{
+						path: 'dashboard',
+						element: <Dashboard />,
+						errorElement: <RouterErrorBoundary />,
+					},
+				],
 			},
 		],
 	},

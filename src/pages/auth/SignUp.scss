@@ -1,0 +1,86 @@
+@use '../../styles/variables' as *;
+
+.sign-up {
+	width: 100%;
+	max-width: 404px;
+	margin: 0 auto;
+	padding: $spacing-lg;
+
+	&__logo {
+		margin-bottom: $spacing-2xl;
+
+		img {
+			height: 32px;
+			width: auto;
+		}
+	}
+
+	&__content {
+		display: flex;
+		flex-direction: column;
+		gap: $spacing-lg;
+	}
+
+	&__header {
+		margin-bottom: $spacing-md;
+	}
+
+	&__title {
+		font-size: $font-size-3xl;
+		font-weight: $font-weight-semibold;
+		color: $text-primary;
+		margin-bottom: $spacing-xs;
+	}
+
+	&__subtitle {
+		font-size: $font-size-base;
+		color: $text-secondary;
+	}
+
+	&__form {
+		width: 100%;
+	}
+
+	&__submit-btn {
+		width: 100%;
+		background-color: $primary-color !important;
+		color: $text-primary !important;
+		font-weight: $font-weight-medium !important;
+		cursor: pointer !important;
+
+		&:hover {
+			opacity: 0.9;
+		}
+
+		&:disabled {
+			opacity: 0.6;
+			cursor: not-allowed !important;
+		}
+	}
+
+	&__google-btn {
+		width: 100%;
+		display: flex !important;
+		align-items: center;
+		justify-content: center;
+		gap: $spacing-sm;
+		font-weight: $font-weight-medium !important;
+		cursor: pointer !important;
+	}
+
+	&__footer {
+		text-align: center;
+		margin-top: $spacing-md;
+	}
+
+	&__link {
+		color: $text-primary;
+		font-weight: $font-weight-medium;
+		text-decoration: underline;
+		text-underline-offset: 2px;
+
+		&:hover {
+			color: $secondary-color;
+		}
+	}
+}
