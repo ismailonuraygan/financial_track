@@ -3,6 +3,7 @@ import {
 	RecentTransactions,
 	WorkingCapital,
 	ScheduledTransfers,
+	Wallet,
 } from './components';
 import './Dashboard.scss';
 
@@ -18,6 +19,7 @@ const Dashboard = () => {
 
 			{/* Right side - sidebar */}
 			<aside className="dashboard__sidebar">
+				<Wallet />
 				<ScheduledTransfers />
 			</aside>
 		</div>
