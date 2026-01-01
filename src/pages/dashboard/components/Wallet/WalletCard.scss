@@ -3,6 +3,7 @@
 .wallet-card {
 	position: absolute;
 	width: 100%;
+	max-width: 354px;
 	height: 180px;
 	border-radius: $radius-lg;
 	padding: $spacing-lg;
@@ -114,4 +115,3 @@
 		}
 	}
 }
-

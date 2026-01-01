@@ -2,7 +2,7 @@ import type { WalletCard as WalletCardType } from '@/api/types';
 import ChipIcon from '@/assets/icons/chip.svg?react';
 import ContactlessIcon from '@/assets/icons/contactless.svg?react';
 import VisaLogo from '@/assets/icons/visa.svg?react';
-import MastercardLogo from '@/assets/icons/mastercard.png';
+import MastercardLogo from '@/assets/icons/mastercard.svg?react';
 import './WalletCard.scss';
 
 interface WalletCardProps {
@@ -72,11 +72,7 @@ const WalletCard = ({ card, position }: WalletCardProps) => {
 					{card.network === 'Visa' ? (
 						<VisaLogo className="wallet-card__network-logo" />
 					) : (
-						<img
-							src={MastercardLogo}
-							alt="Mastercard"
-							className="wallet-card__network-logo wallet-card__network-logo--mastercard"
-						/>
+						<MastercardLogo className="wallet-card__network-logo wallet-card__network-logo--mastercard" />
 					)}
 				</div>
 			</div>
