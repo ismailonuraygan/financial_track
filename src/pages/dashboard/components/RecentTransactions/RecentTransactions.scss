@@ -123,6 +123,7 @@
 	&__date {
 		font-size: $font-size-sm;
 		color: $text-secondary;
+		white-space: nowrap;
 	}
 
 	// Skeleton loading

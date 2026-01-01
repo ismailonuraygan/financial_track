@@ -1,9 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
 import { financialService } from '@/api';
+import { ErrorState } from '@/components/ui';
 import './RecentTransactions.scss';
 
 function RecentTransactions() {
-	const { data, isLoading } = useQuery({
+	const { data, isLoading, isError, refetch } = useQuery({
 		queryKey: ['recent-transactions'],
 		queryFn: financialService.getRecentTransactions,
 	});
@@ -34,6 +35,14 @@ function RecentTransactions() {
 				<div className="recent-transactions__skeleton-row" />
 				<div className="recent-transactions__skeleton-row" />
 				<div className="recent-transactions__skeleton-row" />
+			</div>
+		);
+	}
+
+	if (isError) {
+		return (
+			<div className="recent-transactions">
+				<ErrorState message="Failed to load transactions" onRetry={() => refetch()} />
 			</div>
 		);
 	}

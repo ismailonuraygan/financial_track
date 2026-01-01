@@ -1,7 +1,9 @@
 @use '@/styles/variables' as *;
 @use '@/styles/breakpoints' as *;
+@use '@/styles/animations' as *;
 
 .wallet {
+	background-color: $bg-white;
 	@include desktop {
 		border: 1px solid $border-color;
 		border-radius: $radius-xl;
@@ -26,14 +28,13 @@
 		perspective: 1000px;
 	}
 
-	// Loading skeletons
+	// Loading skeletons with shimmer effect
 	&__card-skeleton {
 		position: absolute;
 		width: 100%;
 		height: 180px;
 		border-radius: $radius-lg;
-		background: linear-gradient(135deg, $bg-gray 0%, darken($bg-gray, 5%) 100%);
-		animation: pulse 1.5s infinite ease-in-out;
+		@include shimmer;
 
 		&--back {
 			top: 0;
@@ -44,18 +45,6 @@
 		&--front {
 			top: 80px;
 			z-index: 1;
-		}
-	}
-
-	@keyframes pulse {
-		0% {
-			opacity: 0.6;
-		}
-		50% {
-			opacity: 1;
-		}
-		100% {
-			opacity: 0.6;
 		}
 	}
 }

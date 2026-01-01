@@ -1,0 +1,35 @@
+@use '@/styles/variables' as *;
+
+.error-state {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: $spacing-2xl;
+	text-align: center;
+	background-color: $bg-white;
+	border-radius: $radius-xl;
+	border: 1px solid $border-color;
+	min-height: 200px;
+	width: 100%;
+
+	&--full-width {
+		grid-column: 1 / -1; // Span all grid columns
+	}
+
+	&__icon {
+		font-size: 48px;
+		margin-bottom: $spacing-lg;
+	}
+
+	&__message {
+		color: $text-secondary;
+		margin-bottom: $spacing-lg;
+		font-size: $font-size-base;
+	}
+
+	&__retry-btn {
+		cursor: pointer;
+	}
+}
+

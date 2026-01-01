@@ -2,17 +2,27 @@ import { useQuery } from '@tanstack/react-query';
 import { financialService } from '@/api';
 import { Flex, Text, IconButton, Box } from '@radix-ui/themes';
 import { DotsHorizontalIcon } from '@radix-ui/react-icons';
+import { ErrorState } from '@/components/ui';
 import WalletCard from './WalletCard';
 import './Wallet.scss';
 
 const Wallet = () => {
-	const { data, isLoading, isError } = useQuery({
+	const { data, isLoading, isError, refetch } = useQuery({
 		queryKey: ['walletCards'],
 		queryFn: financialService.getWallets,
 	});
 
 	if (isError) {
-		return <div className="wallet">Error loading wallet cards.</div>;
+		return (
+			<div className="wallet">
+				<Flex justify="between" align="center" mb="4">
+					<Text as="span" size="4" weight="bold" className="wallet__title">
+						Wallet
+					</Text>
+				</Flex>
+				<ErrorState message="Failed to load wallet" onRetry={() => refetch()} />
+			</div>
+		);
 	}
 
 	const cards = data?.cards || [];

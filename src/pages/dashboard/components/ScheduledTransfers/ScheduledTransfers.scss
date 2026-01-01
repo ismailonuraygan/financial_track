@@ -1,5 +1,6 @@
 @use '@/styles/variables' as *;
 @use '@/styles/breakpoints' as *;
+@use '@/styles/animations' as *;
 
 .scheduled-transfers {
 	background-color: $bg-white;
@@ -45,33 +46,29 @@
 				width: 40px;
 				height: 40px;
 				border-radius: $radius-full;
-				background-color: $bg-gray;
-				animation: pulse 1.5s infinite ease-in-out;
+				@include shimmer;
 			}
 
 			.scheduled-transfers__name-skeleton {
 				width: 120px;
 				height: 16px;
-				background-color: $bg-gray;
 				border-radius: $radius-sm;
-				animation: pulse 1.5s infinite ease-in-out;
+				@include shimmer;
 			}
 
 			.scheduled-transfers__date-skeleton {
 				width: 150px;
 				height: 14px;
-				background-color: $bg-gray;
 				border-radius: $radius-sm;
 				margin-top: $spacing-xs;
-				animation: pulse 1.5s infinite ease-in-out;
+				@include shimmer;
 			}
 
 			.scheduled-transfers__amount-skeleton {
 				width: 80px;
 				height: 20px;
-				background-color: $bg-gray;
 				border-radius: $radius-sm;
-				animation: pulse 1.5s infinite ease-in-out;
+				@include shimmer;
 			}
 		}
 	}
@@ -90,17 +87,5 @@
 
 	&__amount {
 		color: $text-primary;
-	}
-
-	@keyframes pulse {
-		0% {
-			opacity: 0.6;
-		}
-		50% {
-			opacity: 1;
-		}
-		100% {
-			opacity: 0.6;
-		}
 	}
 }

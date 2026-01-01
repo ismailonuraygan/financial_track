@@ -2,16 +2,26 @@ import { useQuery } from '@tanstack/react-query';
 import { financialService } from '@/api';
 import { Flex, Box, Text, Button, Avatar } from '@radix-ui/themes';
 import { ChevronRightIcon } from '@radix-ui/react-icons';
+import { ErrorState } from '@/components/ui';
 import './ScheduledTransfers.scss';
 
 const ScheduledTransfers = () => {
-	const { data, isLoading, isError } = useQuery({
+	const { data, isLoading, isError, refetch } = useQuery({
 		queryKey: ['scheduledTransfers'],
 		queryFn: financialService.getScheduledTransfers,
 	});
 
 	if (isError) {
-		return <div className="scheduled-transfers">Error loading scheduled transfers.</div>;
+		return (
+			<div className="scheduled-transfers">
+				<Flex justify="between" align="center" mb="4">
+					<Text as="span" size="4" weight="bold" className="scheduled-transfers__title">
+						Scheduled Transfers
+					</Text>
+				</Flex>
+				<ErrorState message="Failed to load transfers" onRetry={() => refetch()} />
+			</div>
+		);
 	}
 
 	const transfers = data?.transfers || [];

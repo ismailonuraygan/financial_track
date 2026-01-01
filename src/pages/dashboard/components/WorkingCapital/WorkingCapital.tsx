@@ -10,6 +10,7 @@ import {
 	ResponsiveContainer,
 } from 'recharts';
 import { financialService } from '@/api';
+import { ErrorState } from '@/components/ui';
 import './WorkingCapital.scss';
 
 type Period = 'last7Days' | 'last30Days' | 'last6Months';
@@ -23,7 +24,7 @@ const periodOptions: { value: Period; label: string }[] = [
 function WorkingCapital() {
 	const [period, setPeriod] = useState<Period>('last7Days');
 
-	const { data, isLoading } = useQuery({
+	const { data, isLoading, isError, refetch } = useQuery({
 		queryKey: ['working-capital', period],
 		queryFn: () => financialService.getWorkingCapital(period),
 	});
@@ -50,6 +51,14 @@ function WorkingCapital() {
 					<div className="working-capital__skeleton-title" />
 				</div>
 				<div className="working-capital__skeleton-chart" />
+			</div>
+		);
+	}
+
+	if (isError) {
+		return (
+			<div className="working-capital">
+				<ErrorState message="Failed to load chart data" onRetry={() => refetch()} />
 			</div>
 		);
 	}
