@@ -76,7 +76,7 @@ function Sidebar({ isOpen, onClose }: SidebarProps) {
 				<nav className="sidebar__nav">
 					<ul className="sidebar__nav-list">
 						{mainNavItems.map((item) => (
-							<li key={item.path}>
+							<li key={item.label}>
 								<NavLink
 									to={item.path}
 									className={({ isActive }) =>
@@ -96,7 +96,7 @@ function Sidebar({ isOpen, onClose }: SidebarProps) {
 				<div className="sidebar__bottom">
 					<ul className="sidebar__nav-list">
 						{bottomNavItems.map((item) => (
-							<li key={item.path}>
+							<li key={item.label}>
 								<NavLink
 									to={item.path}
 									className={({ isActive }) =>
