@@ -3,10 +3,14 @@
 
 .dashboard-summary {
 	display: grid;
-	grid-template-columns: repeat(1, 1fr);
+	grid-template-columns: 1fr;
 	gap: $spacing-md;
 
-	@include tablet {
+	@media screen and (min-width: 500px) {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	@include desktop {
 		grid-template-columns: repeat(3, 1fr);
 	}
 
@@ -16,12 +20,7 @@
 
 	&__skeleton {
 		height: 88px;
-		background: linear-gradient(
-			90deg,
-			$bg-light 25%,
-			darken($bg-light, 5%) 50%,
-			$bg-light 75%
-		);
+		background: linear-gradient(90deg, $bg-light 25%, darken($bg-light, 5%) 50%, $bg-light 75%);
 		background-size: 200% 100%;
 		animation: shimmer 1.5s infinite;
 		border-radius: $radius-xl;
@@ -36,4 +35,3 @@
 		background-position: -200% 0;
 	}
 }
-

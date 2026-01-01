@@ -2,11 +2,14 @@
 
 .wallet-card {
 	position: absolute;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
 	width: 100%;
-	max-width: 354px;
-	height: 180px;
+	max-width: 280px;
+	height: 170px;
 	border-radius: $radius-lg;
-	padding: $spacing-lg;
+	padding: $spacing-md;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
