@@ -1,0 +1,53 @@
+@use '@/styles/variables' as *;
+
+.error-boundary {
+	min-height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: $bg-light;
+	padding: $spacing-lg;
+
+	&__container {
+		text-align: center;
+		background-color: $bg-white;
+		border-radius: $radius-lg;
+		padding: $spacing-2xl;
+		box-shadow: $shadow-md;
+	}
+
+	&__icon {
+		font-size: 64px;
+		margin-bottom: $spacing-lg;
+	}
+
+	&__title {
+		color: $text-primary;
+		margin-bottom: $spacing-sm;
+	}
+
+	&__message {
+		color: $text-secondary;
+		line-height: 1.6;
+	}
+
+	&__details {
+		margin-top: $spacing-lg;
+		padding: $spacing-md;
+		background-color: $bg-light;
+		border-radius: $radius-md;
+		text-align: left;
+	}
+
+	&__code {
+		display: block;
+		margin-top: $spacing-xs;
+		padding: $spacing-sm;
+		background-color: rgba($error-color, 0.1);
+		border-radius: $radius-sm;
+		font-size: $font-size-xs;
+		color: $error-color;
+		word-break: break-word;
+		white-space: pre-wrap;
+	}
+}
