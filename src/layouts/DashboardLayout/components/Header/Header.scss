@@ -1,0 +1,27 @@
+@use '../../../../styles/variables' as *;
+@use '../../../../styles/breakpoints' as *;
+
+.header {
+	height: 70px;
+	background-color: $bg-white;
+	border-bottom: 1px solid $border-color;
+	display: flex;
+	align-items: center;
+	padding: 0 $spacing-lg;
+	gap: $spacing-md;
+
+	&__menu-btn {
+		display: block;
+
+		// Hide hamburger menu on desktop
+		@include desktop {
+			display: none;
+		}
+	}
+
+	&__content {
+		flex: 1;
+		display: flex;
+		align-items: center;
+	}
+}
