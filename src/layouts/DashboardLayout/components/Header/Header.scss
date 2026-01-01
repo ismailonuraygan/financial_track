@@ -33,6 +33,14 @@
 		margin: 0;
 	}
 
+	&__mobile-user {
+		display: flex;
+
+		@include desktop {
+			display: none;
+		}
+	}
+
 	&__actions {
 		display: none;
 		align-items: center;
@@ -65,6 +73,10 @@
 
 		&:hover {
 			background-color: rgba($primary-color, 0.1);
+		}
+
+		&--mobile {
+			padding: $spacing-xs;
 		}
 	}
 
