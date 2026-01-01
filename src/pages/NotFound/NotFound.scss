@@ -1,0 +1,34 @@
+@use '@/styles/variables' as *;
+
+.not-found {
+	min-height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: $bg-light;
+	padding: $spacing-lg;
+
+	&__container {
+		text-align: center;
+		max-width: 500px;
+	}
+
+	&__code {
+		font-size: 120px;
+		line-height: 1;
+		color: $primary-color;
+		margin-bottom: $spacing-md;
+		display: block;
+	}
+
+	&__title {
+		color: $text-primary;
+		margin-bottom: $spacing-md;
+	}
+
+	&__message {
+		color: $text-secondary;
+		line-height: 1.6;
+	}
+}
+

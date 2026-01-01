@@ -17,6 +17,9 @@ import SignUp from '../pages/auth/SignUp';
 // Dashboard Pages
 import Dashboard from '../pages/dashboard/Dashboard';
 
+// NotFound Page
+import NotFound from '../pages/NotFound';
+
 export const router = createBrowserRouter([
 	{
 		path: '/',
@@ -60,5 +63,11 @@ export const router = createBrowserRouter([
 				],
 			},
 		],
+	},
+	{
+		// NotFound route - catches all unknown routes
+		path: '*',
+		element: <NotFound />,
+		errorElement: <RouterErrorBoundary />,
 	},
 ]);
