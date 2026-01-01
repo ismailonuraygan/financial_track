@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { useAuthStore } from '@/store';
+import { authService } from '@/api';
 
 // Icons
 import DashboardIcon from '@/assets/icons/dashboard.svg?react';
@@ -30,7 +30,6 @@ const bottomNavItems = [{ path: '/help', label: 'Help', icon: <HelpIcon /> }];
 
 function Sidebar({ isOpen, onClose }: SidebarProps) {
 	const navigate = useNavigate();
-	const logout = useAuthStore((state) => state.logout);
 
 	// Close sidebar on escape key
 	useEffect(() => {
@@ -52,8 +51,8 @@ function Sidebar({ isOpen, onClose }: SidebarProps) {
 		};
 	}, [isOpen, onClose]);
 
-	const handleLogout = () => {
-		logout();
+	const handleLogout = async () => {
+		await authService.logout();
 		navigate('/sign-in');
 	};
 

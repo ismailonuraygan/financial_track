@@ -2,6 +2,7 @@ import { ChevronDownIcon } from '@radix-ui/react-icons';
 import { Avatar, DropdownMenu, Text } from '@radix-ui/themes';
 import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '@/store';
+import { authService } from '@/api';
 
 interface UserDropdownProps {
 	isMobile?: boolean;
@@ -9,10 +10,10 @@ interface UserDropdownProps {
 
 const UserDropdown = ({ isMobile = false }: UserDropdownProps) => {
 	const navigate = useNavigate();
-	const { user, logout } = useAuthStore();
+	const { user } = useAuthStore();
 
-	const handleLogout = () => {
-		logout();
+	const handleLogout = async () => {
+		await authService.logout();
 		navigate('/sign-in');
 	};
 
@@ -50,4 +51,3 @@ const UserDropdown = ({ isMobile = false }: UserDropdownProps) => {
 };
 
 export default UserDropdown;
-
