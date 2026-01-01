@@ -1,15 +1,15 @@
 import { useEffect } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { useAuthStore } from '../../../../store';
+import { useAuthStore } from '@/store';
 
 // Icons
-import DashboardIcon from '../../../../assets/icons/dashboard.svg?react';
-import TransactionsIcon from '../../../../assets/icons/transactions.svg?react';
-import InvoicesIcon from '../../../../assets/icons/invoices.svg?react';
-import MyWalletsIcon from '../../../../assets/icons/my_wallets.svg?react';
-import SettingsIcon from '../../../../assets/icons/settings.svg?react';
-import HelpIcon from '../../../../assets/icons/help.svg?react';
-import LogoutIcon from '../../../../assets/icons/logout.svg?react';
+import DashboardIcon from '@/assets/icons/dashboard.svg?react';
+import TransactionsIcon from '@/assets/icons/transactions.svg?react';
+import InvoicesIcon from '@/assets/icons/invoices.svg?react';
+import MyWalletsIcon from '@/assets/icons/my_wallets.svg?react';
+import SettingsIcon from '@/assets/icons/settings.svg?react';
+import HelpIcon from '@/assets/icons/help.svg?react';
+import LogoutIcon from '@/assets/icons/logout.svg?react';
 
 import './Sidebar.scss';
 
@@ -80,7 +80,7 @@ function Sidebar({ isOpen, onClose }: SidebarProps) {
 								<NavLink
 									to={item.path}
 									className={({ isActive }) =>
-										`sidebar__nav-item ${isActive ? 'sidebar__nav-item--active' : ''}`
+										`sidebar__nav-item ${isActive && item.label === 'Dashboard' ? 'sidebar__nav-item--active' : ''}`
 									}
 									onClick={onClose}
 								>
