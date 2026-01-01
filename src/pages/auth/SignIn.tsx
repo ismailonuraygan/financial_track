@@ -131,8 +131,9 @@ const SignIn = () => {
 							size="3"
 							className="sign-in__submit-btn"
 							disabled={loginMutation.isPending}
+							loading={loginMutation.isPending}
 						>
-							{loginMutation.isPending ? 'Signing in...' : 'Sign In'}
+							'Sign In'
 						</Button>
 
 						<Button

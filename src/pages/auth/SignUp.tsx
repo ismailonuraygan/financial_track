@@ -157,8 +157,9 @@ const SignUp = () => {
 							size="3"
 							className="sign-up__submit-btn"
 							disabled={registerMutation.isPending}
+							loading={registerMutation.isPending}
 						>
-							{registerMutation.isPending ? 'Creating account...' : 'Create Account'}
+							'Create Account'
 						</Button>
 
 						<Button
