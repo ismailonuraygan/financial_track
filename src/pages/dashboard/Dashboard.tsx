@@ -1,8 +1,10 @@
+import { DashboardSummary } from './components';
+import './Dashboard.scss';
+
 const Dashboard = () => {
 	return (
 		<div className="dashboard">
-			<h1>Dashboard</h1>
-			<p>Welcome to your financial dashboard</p>
+			<DashboardSummary />
 		</div>
 	);
 };

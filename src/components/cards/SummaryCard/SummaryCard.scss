@@ -1,0 +1,69 @@
+@use '@/styles/variables' as *;
+
+.summary-card {
+	display: flex;
+	align-items: center;
+	gap: $spacing-md;
+	padding: $spacing-lg;
+	background-color: $bg-white;
+	border-radius: $radius-xl;
+	border: 1px solid $border-color;
+	min-width: 180px;
+
+	&--primary {
+		background-color: $primary-color;
+		border-color: $primary-color;
+
+		.summary-card__title {
+			color: $text-primary;
+		}
+
+		.summary-card__amount {
+			color: $text-primary;
+		}
+
+		.summary-card__icon {
+			background-color: $dark-bg;
+
+			svg {
+				color: $text-white;
+			}
+		}
+	}
+
+	&__icon {
+		width: 48px;
+		height: 48px;
+		border-radius: $radius-lg;
+		background-color: $bg-light;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+
+		svg {
+			width: 24px;
+			height: 24px;
+			color: $text-secondary;
+		}
+	}
+
+	&__content {
+		display: flex;
+		flex-direction: column;
+		gap: $spacing-xs;
+	}
+
+	&__title {
+		font-size: $font-size-sm;
+		color: $text-secondary;
+		font-weight: $font-weight-regular;
+	}
+
+	&__amount {
+		font-size: $font-size-xl;
+		font-weight: $font-weight-semibold;
+		color: $text-primary;
+	}
+}
+

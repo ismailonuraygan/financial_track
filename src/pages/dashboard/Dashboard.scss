@@ -1,0 +1,8 @@
+@use '@/styles/variables' as *;
+
+.dashboard {
+	display: flex;
+	flex-direction: column;
+	gap: $spacing-lg;
+}
+
