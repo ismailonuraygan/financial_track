@@ -28,7 +28,7 @@ $breakpoints: (
 }
 
 @mixin large-desktop {
-	@media screen and (min-widath: map.get($breakpoints, 'large-desktop')) {
+	@media screen and (min-width: map.get($breakpoints, 'large-desktop')) {
 		@content;
 	}
 }
