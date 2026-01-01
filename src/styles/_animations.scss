@@ -1,0 +1,35 @@
+@use 'variables' as *;
+
+// Shimmer animation for skeleton loading states
+@mixin shimmer {
+	background: linear-gradient(90deg, $bg-gray 25%, lighten($bg-gray, 5%) 50%, $bg-gray 75%);
+	background-size: 200% 100%;
+	animation: shimmer 1.5s infinite ease-in-out;
+}
+
+@keyframes shimmer {
+	0% {
+		background-position: 200% 0;
+	}
+	100% {
+		background-position: -200% 0;
+	}
+}
+
+// Pulse animation (alternative)
+@mixin pulse {
+	animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+	0% {
+		opacity: 0.6;
+	}
+	50% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0.6;
+	}
+}
+
