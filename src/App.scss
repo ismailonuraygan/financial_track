@@ -1,1 +1,13 @@
-// Ana uygulama stilleri buraya eklenecek
+@use './styles/variables' as *;
+
+// Radix UI Theme - Font Override
+.radix-themes {
+	--default-font-family: #{$font-family};
+	--heading-font-family: #{$font-family};
+	--code-font-family: monospace;
+}
+
+// Radix UI Overrides
+.rt-Button {
+	cursor: pointer !important;
+}
