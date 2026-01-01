@@ -9,6 +9,7 @@ interface AuthState {
 	refreshToken: string | null;
 	isInitialized: boolean; // Auth kontrolü tamamlandı mı?
 	isLoading: boolean; // Auth kontrolü yapılıyor mu?
+	isLoggingOut: boolean; // Logout işlemi devam ediyor mu?
 }
 
 interface AuthActions {
@@ -17,6 +18,7 @@ interface AuthActions {
 	setUser: (user: User) => void;
 	setInitialized: (initialized: boolean) => void;
 	setLoading: (loading: boolean) => void;
+	setLoggingOut: (loggingOut: boolean) => void;
 }
 
 type AuthStore = AuthState & AuthActions;
@@ -28,6 +30,7 @@ const initialState: AuthState = {
 	refreshToken: null,
 	isInitialized: false,
 	isLoading: true,
+	isLoggingOut: false,
 };
 
 export const useAuthStore = create<AuthStore>()(
@@ -41,6 +44,7 @@ export const useAuthStore = create<AuthStore>()(
 					accessToken,
 					refreshToken,
 					isAuthenticated: true,
+					isLoggingOut: false, // Reset logout state on successful login/register
 				}),
 
 			logout: () =>
@@ -49,6 +53,7 @@ export const useAuthStore = create<AuthStore>()(
 					accessToken: null,
 					refreshToken: null,
 					isAuthenticated: false,
+					isLoggingOut: false, // Reset logout state
 				}),
 
 			setUser: (user) => set({ user }),
@@ -56,6 +61,8 @@ export const useAuthStore = create<AuthStore>()(
 			setInitialized: (initialized) => set({ isInitialized: initialized }),
 
 			setLoading: (loading) => set({ isLoading: loading }),
+
+			setLoggingOut: (loggingOut) => set({ isLoggingOut: loggingOut }),
 		}),
 		{
 			name: 'auth-storage',

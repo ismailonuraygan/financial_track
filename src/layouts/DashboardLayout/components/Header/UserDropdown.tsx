@@ -1,5 +1,5 @@
 import { ChevronDownIcon } from '@radix-ui/react-icons';
-import { Avatar, DropdownMenu, Text } from '@radix-ui/themes';
+import { Avatar, DropdownMenu, Text, Spinner, Flex } from '@radix-ui/themes';
 import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '@/store';
 import { authService } from '@/api';
@@ -10,11 +10,17 @@ interface UserDropdownProps {
 
 const UserDropdown = ({ isMobile = false }: UserDropdownProps) => {
 	const navigate = useNavigate();
-	const { user } = useAuthStore();
+	const { user, isLoggingOut, setLoggingOut } = useAuthStore();
 
 	const handleLogout = async () => {
-		await authService.logout();
-		navigate('/sign-in');
+		setLoggingOut(true);
+		try {
+			await authService.logout();
+			navigate('/sign-in');
+		} catch (error) {
+			console.error('Logout error:', error);
+			setLoggingOut(false);
+		}
 	};
 
 	return (
@@ -42,8 +48,19 @@ const UserDropdown = ({ isMobile = false }: UserDropdownProps) => {
 				</button>
 			</DropdownMenu.Trigger>
 			<DropdownMenu.Content align="end" className="header__dropdown">
-				<DropdownMenu.Item onClick={handleLogout} style={{ cursor: 'pointer' }}>
-					Logout
+				<DropdownMenu.Item
+					onClick={handleLogout}
+					disabled={isLoggingOut}
+					style={{ cursor: isLoggingOut ? 'not-allowed' : 'pointer' }}
+				>
+					{isLoggingOut ? (
+						<Flex align="center" gap="2">
+							<Spinner size="1" />
+							<Text size="2">Logging out...</Text>
+						</Flex>
+					) : (
+						'Logout'
+					)}
 				</DropdownMenu.Item>
 			</DropdownMenu.Content>
 		</DropdownMenu.Root>

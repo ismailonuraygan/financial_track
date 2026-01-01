@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
+import { Spinner } from '@radix-ui/themes';
+import { useAuthStore } from '@/store';
 import { authService } from '@/api';
 
 // Icons
@@ -30,6 +32,7 @@ const bottomNavItems = [{ path: '/help', label: 'Help', icon: <HelpIcon /> }];
 
 function Sidebar({ isOpen, onClose }: SidebarProps) {
 	const navigate = useNavigate();
+	const { isLoggingOut, setLoggingOut } = useAuthStore();
 
 	// Close sidebar on escape key
 	useEffect(() => {
@@ -52,8 +55,14 @@ function Sidebar({ isOpen, onClose }: SidebarProps) {
 	}, [isOpen, onClose]);
 
 	const handleLogout = async () => {
-		await authService.logout();
-		navigate('/sign-in');
+		setLoggingOut(true);
+		try {
+			await authService.logout();
+			navigate('/sign-in');
+		} catch (error) {
+			console.error('Logout error:', error);
+			setLoggingOut(false);
+		}
 	};
 
 	return (
@@ -113,11 +122,14 @@ function Sidebar({ isOpen, onClose }: SidebarProps) {
 								type="button"
 								className="sidebar__nav-item sidebar__logout-btn"
 								onClick={handleLogout}
+								disabled={isLoggingOut}
 							>
 								<span className="sidebar__nav-icon">
-									<LogoutIcon />
+									{isLoggingOut ? <Spinner size="1" /> : <LogoutIcon />}
 								</span>
-								<span className="sidebar__nav-label">Logout</span>
+								<span className="sidebar__nav-label">
+									{isLoggingOut ? 'Logging out...' : 'Logout'}
+								</span>
 							</button>
 						</li>
 					</ul>
