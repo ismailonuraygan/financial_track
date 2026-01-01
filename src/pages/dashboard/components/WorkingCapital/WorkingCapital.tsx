@@ -11,6 +11,7 @@ import {
 } from 'recharts';
 import { financialService } from '@/api';
 import { ErrorState } from '@/components/ui';
+import { formatCurrency } from '@/utils';
 import './WorkingCapital.scss';
 
 type Period = 'last7Days' | 'last30Days' | 'last6Months';
@@ -34,14 +35,6 @@ function WorkingCapital() {
 			return `${value / 1000}K`;
 		}
 		return value.toString();
-	};
-
-	const formatTooltip = (value: number) => {
-		return new Intl.NumberFormat('en-US', {
-			style: 'currency',
-			currency: data?.currency || 'USD',
-			minimumFractionDigits: 0,
-		}).format(value);
 	};
 
 	if (isLoading) {
@@ -116,7 +109,10 @@ function WorkingCapital() {
 							dx={-10}
 						/>
 						<Tooltip
-							formatter={(value) => [formatTooltip(Number(value)), '']}
+							formatter={(value) => [
+								formatCurrency(Number(value), data?.currency || 'USD'),
+								'',
+							]}
 							labelStyle={{ display: 'none' }}
 							contentStyle={{
 								backgroundColor: '#fff',

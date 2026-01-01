@@ -1,3 +1,4 @@
+import { ComponentErrorBoundary } from '@/components/ErrorBoundary';
 import {
 	DashboardSummary,
 	RecentTransactions,
@@ -11,14 +12,27 @@ const Dashboard = () => {
 	return (
 		<div className="dashboard">
 			<div className="dashboard__main">
-				<DashboardSummary />
-				<WorkingCapital />
-				<RecentTransactions />
+				<ComponentErrorBoundary fallbackMessage="Failed to load summary">
+					<DashboardSummary />
+				</ComponentErrorBoundary>
+
+				<ComponentErrorBoundary fallbackMessage="Failed to load chart">
+					<WorkingCapital />
+				</ComponentErrorBoundary>
+
+				<ComponentErrorBoundary fallbackMessage="Failed to load transactions">
+					<RecentTransactions />
+				</ComponentErrorBoundary>
 			</div>
 
 			<aside className="dashboard__sidebar">
-				<Wallet />
-				<ScheduledTransfers />
+				<ComponentErrorBoundary fallbackMessage="Failed to load wallet">
+					<Wallet />
+				</ComponentErrorBoundary>
+
+				<ComponentErrorBoundary fallbackMessage="Failed to load transfers">
+					<ScheduledTransfers />
+				</ComponentErrorBoundary>
 			</aside>
 		</div>
 	);

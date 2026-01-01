@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { financialService } from '@/api';
 import { ErrorState } from '@/components/ui';
+import { formatCurrency, formatDate } from '@/utils';
 import './RecentTransactions.scss';
 
 function RecentTransactions() {
@@ -8,23 +9,6 @@ function RecentTransactions() {
 		queryKey: ['recent-transactions'],
 		queryFn: financialService.getRecentTransactions,
 	});
-
-	const formatAmount = (amount: number, currency: string) => {
-		return new Intl.NumberFormat('en-US', {
-			style: 'currency',
-			currency: currency,
-			minimumFractionDigits: 2,
-		}).format(Math.abs(amount));
-	};
-
-	const formatDate = (dateString: string) => {
-		const date = new Date(dateString);
-		return date.toLocaleDateString('en-US', {
-			day: '2-digit',
-			month: 'short',
-			year: 'numeric',
-		});
-	};
 
 	if (isLoading) {
 		return (
@@ -90,7 +74,7 @@ function RecentTransactions() {
 								</td>
 								<td className="recent-transactions__type">{transaction.type}</td>
 								<td className="recent-transactions__amount">
-									{formatAmount(transaction.amount, transaction.currency)}
+									{formatCurrency(transaction.amount, transaction.currency)}
 								</td>
 								<td className="recent-transactions__date">
 									{formatDate(transaction.date)}

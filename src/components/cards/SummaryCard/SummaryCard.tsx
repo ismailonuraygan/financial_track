@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import { formatCurrency } from '@/utils';
 import './SummaryCard.scss';
 
 interface SummaryCardProps {
@@ -9,23 +10,22 @@ interface SummaryCardProps {
 	variant?: 'primary' | 'default';
 }
 
-function SummaryCard({ icon, title, amount, currency = 'USD', variant = 'default' }: SummaryCardProps) {
-	const formattedAmount = new Intl.NumberFormat('en-US', {
-		style: 'currency',
-		currency: currency,
-		minimumFractionDigits: 2,
-	}).format(amount);
-
+function SummaryCard({
+	icon,
+	title,
+	amount,
+	currency = 'USD',
+	variant = 'default',
+}: SummaryCardProps) {
 	return (
 		<div className={`summary-card summary-card--${variant}`}>
 			<div className="summary-card__icon">{icon}</div>
 			<div className="summary-card__content">
 				<span className="summary-card__title">{title}</span>
-				<span className="summary-card__amount">{formattedAmount}</span>
+				<span className="summary-card__amount">{formatCurrency(amount, currency)}</span>
 			</div>
 		</div>
 	);
 }
 
 export default SummaryCard;
-
