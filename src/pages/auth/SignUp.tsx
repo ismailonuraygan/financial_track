@@ -159,7 +159,7 @@ const SignUp = () => {
 							disabled={registerMutation.isPending}
 							loading={registerMutation.isPending}
 						>
-							'Create Account'
+							Create Account
 						</Button>
 
 						<Button
