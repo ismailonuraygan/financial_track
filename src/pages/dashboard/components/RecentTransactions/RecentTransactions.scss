@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use '@/styles/variables' as *;
 @use '@/styles/breakpoints' as *;
 
@@ -130,7 +131,7 @@
 	&__skeleton-title {
 		width: 200px;
 		height: 24px;
-		background: linear-gradient(90deg, $bg-light 25%, darken($bg-light, 5%) 50%, $bg-light 75%);
+		background: linear-gradient(90deg, $bg-light 25%, color.adjust($bg-light, $lightness: -5%) 50%, $bg-light 75%);
 		background-size: 200% 100%;
 		animation: shimmer 1.5s infinite;
 		border-radius: $radius-md;
@@ -138,7 +139,7 @@
 
 	&__skeleton-row {
 		height: 60px;
-		background: linear-gradient(90deg, $bg-light 25%, darken($bg-light, 5%) 50%, $bg-light 75%);
+		background: linear-gradient(90deg, $bg-light 25%, color.adjust($bg-light, $lightness: -5%) 50%, $bg-light 75%);
 		background-size: 200% 100%;
 		animation: shimmer 1.5s infinite;
 		border-radius: $radius-md;
