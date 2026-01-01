@@ -30,6 +30,9 @@
 	display: flex;
 	flex-direction: column;
 	height: 100vh;
+	overflow-y: auto;
+	overflow-x: hidden;
+	-webkit-overflow-scrolling: touch; // Smooth scrolling on iOS
 
 	// Mobile: Off-canvas drawer
 	position: fixed;
@@ -56,6 +59,7 @@
 	&__logo {
 		padding: $spacing-lg;
 		padding-bottom: $spacing-xl;
+		flex-shrink: 0; // Keep logo fixed at top
 
 		img {
 			height: 32px;
@@ -66,6 +70,8 @@
 	&__nav {
 		flex: 1;
 		padding: 0 $spacing-md;
+		overflow-y: auto;
+		min-height: 0; // Important for flex children to allow scrolling
 	}
 
 	&__nav-list {
@@ -133,6 +139,7 @@
 		padding: 0 $spacing-md;
 		padding-bottom: $spacing-lg;
 		margin-top: auto;
+		flex-shrink: 0; // Prevent bottom section from shrinking
 	}
 
 	&__logout-btn {
