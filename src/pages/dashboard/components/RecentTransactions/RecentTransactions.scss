@@ -1,0 +1,149 @@
+@use '@/styles/variables' as *;
+@use '@/styles/breakpoints' as *;
+
+.recent-transactions {
+	background-color: $bg-white;
+	border-radius: $radius-xl;
+	border: 1px solid $border-color;
+	padding: $spacing-lg;
+
+	&--loading {
+		min-height: 300px;
+	}
+
+	&__header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: $spacing-lg;
+	}
+
+	&__title {
+		font-size: $font-size-lg;
+		font-weight: $font-weight-semibold;
+		color: $text-primary;
+		margin: 0;
+	}
+
+	&__view-all {
+		background: none;
+		border: none;
+		color: $secondary-color;
+		font-size: $font-size-sm;
+		font-weight: $font-weight-medium;
+		cursor: pointer;
+		padding: 0;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+
+	&__table-wrapper {
+		overflow-x: auto;
+	}
+
+	&__table {
+		width: 100%;
+		border-collapse: collapse;
+
+		th,
+		td {
+			padding: $spacing-md $spacing-sm;
+			text-align: left;
+		}
+
+		th {
+			font-size: $font-size-xs;
+			font-weight: $font-weight-medium;
+			color: $text-secondary;
+			text-transform: uppercase;
+			letter-spacing: 0.5px;
+			border-bottom: 1px solid $border-color;
+		}
+
+		td {
+			border-bottom: 1px solid $border-color;
+			vertical-align: middle;
+		}
+
+		tbody tr:last-child td {
+			border-bottom: none;
+		}
+	}
+
+	&__name-cell {
+		display: flex;
+		align-items: center;
+		gap: $spacing-md;
+	}
+
+	&__logo {
+		width: 40px;
+		height: 40px;
+		border-radius: $radius-md;
+		object-fit: contain;
+		background-color: $bg-light;
+	}
+
+	&__name-info {
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
+	}
+
+	&__name {
+		font-size: $font-size-sm;
+		font-weight: $font-weight-medium;
+		color: $text-primary;
+	}
+
+	&__business {
+		font-size: $font-size-xs;
+		color: $text-secondary;
+	}
+
+	&__type {
+		font-size: $font-size-sm;
+		color: $text-secondary;
+	}
+
+	&__amount {
+		font-size: $font-size-sm;
+		font-weight: $font-weight-semibold;
+		color: $text-primary;
+	}
+
+	&__date {
+		font-size: $font-size-sm;
+		color: $text-secondary;
+	}
+
+	// Skeleton loading
+	&__skeleton-title {
+		width: 200px;
+		height: 24px;
+		background: linear-gradient(90deg, $bg-light 25%, darken($bg-light, 5%) 50%, $bg-light 75%);
+		background-size: 200% 100%;
+		animation: shimmer 1.5s infinite;
+		border-radius: $radius-md;
+	}
+
+	&__skeleton-row {
+		height: 60px;
+		background: linear-gradient(90deg, $bg-light 25%, darken($bg-light, 5%) 50%, $bg-light 75%);
+		background-size: 200% 100%;
+		animation: shimmer 1.5s infinite;
+		border-radius: $radius-md;
+		margin-bottom: $spacing-sm;
+	}
+}
+
+@keyframes shimmer {
+	0% {
+		background-position: 200% 0;
+	}
+	100% {
+		background-position: -200% 0;
+	}
+}
