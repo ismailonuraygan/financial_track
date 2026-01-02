@@ -1,73 +1,159 @@
-# React + TypeScript + Vite
+# Financial Track Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern financial tracking dashboard built with React, TypeScript, and Vite. Features authentication, real-time financial summaries, transaction history, working capital charts, wallet management, and scheduled transfers.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Authentication System**
+    - User registration and login
+    - JWT token-based authentication
+    - Automatic token refresh mechanism
+    - Protected routes with route guards
 
-## React Compiler
+- **Dashboard**
+    - Financial summary cards (Total Balance, Total Spending, Total Savings)
+    - Working Capital chart with income/expense trends
+    - Recent transactions table
+    - Wallet cards display
+    - Scheduled transfers list
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **User Experience**
+    - Responsive design (mobile-first approach)
+    - Loading states with shimmer animations
+    - Error boundaries and error handling
+    - Toast notifications for user feedback
+    - 404 Not Found page
 
-## Expanding the ESLint configuration
+- **Developer Experience**
+    - TypeScript for type safety
+    - SCSS for styling with design tokens
+    - Component-level error boundaries
+    - Centralized API client with interceptors
+    - Path aliases for cleaner imports
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🛠️ Tech Stack
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **Frontend Framework:** React 19 + TypeScript
+- **Build Tool:** Vite
+- **Routing:** React Router v7
+- **State Management:** Zustand
+- **Data Fetching:** TanStack Query (React Query)
+- **UI Components:** Radix UI Themes
+- **Forms:** React Hook Form + Zod
+- **Charts:** Recharts
+- **HTTP Client:** Axios
+- **Styling:** SCSS
+- **Notifications:** React Hot Toast
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 📦 Installation
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+1. Clone the repository:
+
+```bash
+git clone <repository-url>
+cd financial_track
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2. Install dependencies:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+pnpm install
 ```
+
+3. Create a `.env` file in the root directory:
+
+```env
+VITE_API_BASE_URL=https://case.nodelabs.dev
+```
+
+4. Start the development server:
+
+```bash
+pnpm dev
+```
+
+5. Open [http://localhost:5173](http://localhost:5173) in your browser.
+
+## 🏗️ Project Structure
+
+```
+src/
+├── api/              # API client and services
+├── assets/           # Static assets (images, icons)
+├── components/       # Reusable components
+│   ├── cards/       # Card components
+│   ├── ErrorBoundary/ # Error boundary components
+│   ├── guards/      # Route guards
+│   └── ui/          # UI components
+├── layouts/         # Layout components
+│   ├── AuthLayout/  # Authentication layout
+│   └── DashboardLayout/ # Dashboard layout
+├── pages/           # Page components
+│   ├── auth/        # Authentication pages
+│   ├── dashboard/   # Dashboard pages
+│   └── NotFound/    # 404 page
+├── providers/       # Context providers
+├── router/          # Route configuration
+├── store/           # Zustand stores
+├── styles/          # Global styles
+│   ├── _animations.scss
+│   ├── _breakpoints.scss
+│   ├── _index.scss
+│   ├── reset.scss
+│   └── variables.scss
+└── utils/           # Utility functions
+```
+
+## 🎨 Styling
+
+The project uses SCSS with a design token system:
+
+- **Variables:** Colors, typography, spacing, breakpoints defined in `variables.scss`
+- **Breakpoints:** Mobile-first responsive mixins
+- **Animations:** Reusable animation mixins (shimmer, pulse)
+- **Reset:** Meyer Web CSS Reset
+
+## 🔐 Authentication Flow
+
+1. User signs in/up → Receives access token and refresh token
+2. Tokens stored in Zustand store (persisted to localStorage)
+3. Axios interceptor adds access token to requests
+4. On 401 errors, interceptor automatically refreshes token
+5. Token validation on app startup via `/users/profile` endpoint
+
+## 📝 Available Scripts
+
+- `pnpm dev` - Start development server
+- `pnpm build` - Build for production
+- `pnpm preview` - Preview production build
+- `pnpm lint` - Run ESLint
+- `pnpm format` - Format code with Prettier
+- `pnpm format:check` - Check code formatting
+
+## 🌐 API Integration
+
+The project integrates with a REST API. API services are organized in:
+
+- `api/client.ts` - Axios instance with interceptors
+- `api/services/auth.ts` - Authentication endpoints
+- `api/services/financial.ts` - Financial data endpoints
+
+All API responses follow the `ApiResponse<T>` wrapper format:
+
+```typescript
+{
+	success: boolean;
+	message: string;
+	data: T;
+}
+```
+
+## 🚢 Deployment
+
+The project is configured for deployment on Vite-compatible platforms (Vercel, Netlify, etc.).
+
+For SPA routing, ensure your hosting platform redirects all routes to `index.html` (configured in `vercel.json`).
+
+## 📄 License
+
+This project is private and proprietary.
