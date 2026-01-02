@@ -5,26 +5,24 @@
 	align-items: center;
 	gap: $spacing-md;
 	padding: $spacing-lg;
-	background-color: $bg-white;
+	background-color: $bg-light-gray;
 	border-radius: $radius-xl;
-	border: 1px solid $border-color;
 	min-width: 180px;
 	overflow: hidden;
 
 	&--primary {
-		background-color: $primary-color;
-		border-color: $primary-color;
+		background-color: $dark-bg;
 
 		.summary-card__title {
-			color: $text-primary;
+			color: $text-secondary;
 		}
 
 		.summary-card__amount {
-			color: $text-primary;
+			color: $text-white; // Keep primary text color for amount
 		}
 
 		.summary-card__icon {
-			background-color: $dark-bg;
+			background-color: $dark-gray;
 
 			svg {
 				color: $text-white;
@@ -35,8 +33,8 @@
 	&__icon {
 		width: 48px;
 		height: 48px;
-		border-radius: $radius-lg;
-		background-color: $bg-light;
+		border-radius: 50%;
+		background-color: $bg-beige;
 		display: flex;
 		align-items: center;
 		justify-content: center;
